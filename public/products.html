@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sri Seetha Rama Paddy Rice Mill - Products</title>
+    <style>
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://wallpapercave.com/wp/wp3592411.jpg') no-repeat center center/cover;
+            filter: blur(10px); /* Apply blur effect to the background image */
+            z-index: -1; /* Ensure the background stays behind all other content */
+        }
+        body {
+            color: white;
+            font-size: 20px;
+        }
+        nav {
+            background: rgba(0, 0, 0, 0.7);
+            padding: 10px;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 2;
+        }
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 1.2em;
+            transition: color 0.3s;
+        }
+        nav a:hover {
+            color: #fdf5e6;
+        }
+        header {
+            text-align: center;
+            padding: 1em;
+            background-color: #6c3f11;
+            color: white;
+        }
+        .container {
+            width: 90%;
+            margin: auto;
+            overflow: hidden;
+        }
+        .product {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            margin: 2em 0;
+            padding: 1em 0;
+            border-bottom: 1px solid #ccc; /* Add a border between products */
+        }
+        .product:nth-child(even) {
+            flex-direction: row-reverse;
+        }
+        .product img {
+            width: 20%;
+            height: auto;
+            border-radius: 8px;
+            border: none;
+        }
+        .product-details {
+            width: 70%;
+            padding: 1em;
+        }
+        .product-details h2 {
+            color: #e7dcd2;
+            font-size: 30px;
+            margin-bottom: 0.5em; /* Adjust spacing between title and description */
+        }
+        .product-details p {
+            color: #f0f0f0;
+            margin-bottom: 1em; /* Add spacing between description and buttons */
+        }
+        .buttons {
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+        }
+        .buttons button {
+            background-color: #6c3f11;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 5px;
+            margin-right: 10px; /* Adjust spacing between buttons */
+        }
+        .buttons button:last-child {
+            margin-right: 0; /* Remove margin from the last button */
+        }
+        .buttons button:hover {
+            background-color: #8b5d2e;
+        }
+        footer {
+            text-align: center;
+            padding: 1em;
+            background-color: #6c3f11;
+            color: white;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            z-index: 2;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="home.html">Home</a>
+        <a href="products.html">Products</a>
+        <a href="process.html">Process</a>
+        <a href="quality.html">Quality Check</a>
+        <a href="gallery.html">Gallery</a>
+        <a href="contactdetails.html">Contact</a>
+        <a href="mycart.html">Cart</a>
+    </nav>
+    <header>
+        <h1>Sri Seetha Rama Paddy Rice Mill - Our Products</h1>
+    </header>
+    <div class="container" id="product-container">
+        <!-- Product items will be dynamically added here -->
+    </div>
+    <footer>
+        <p>&copy; 2024 Sri Seetha Rama Paddy Rice Mill. All rights reserved.</p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+    fetch('/products')
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Failed to fetch products');
+            }
+            return response.json();
+        })
+        .then(products => {
+            const productContainer = document.getElementById('product-container');
+            products.forEach(product => {
+                const productDiv = document.createElement('div');
+                productDiv.classList.add('product');
+
+                const productImage = document.createElement('img');
+                productImage.src = `${product.name}.png`; // Assuming images are named productname.png
+                productImage.alt = product.name;
+                productDiv.appendChild(productImage);
+
+                const productDetails = document.createElement('div');
+                productDetails.classList.add('product-details');
+
+                const productName = document.createElement('h2');
+                productName.textContent = product.name;
+                productDetails.appendChild(productName);
+
+                // Fetch product description from JSON
+                fetch('/products.json')
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error('Failed to fetch product descriptions');
+                        }
+                        return response.json();
+                    })
+                    .then(descriptions => {
+                        const description = descriptions.find(desc => desc.name === product.name);
+                        const productDescription = document.createElement('p');
+                        productDescription.textContent = description ? description.description : 'Description not available';
+                        productDetails.appendChild(productDescription);
+
+                        const buttonsDiv = document.createElement('div');
+                        buttonsDiv.classList.add('buttons');
+
+                        const productDetailsButton = document.createElement('button');
+                        productDetailsButton.textContent = 'Product Details';
+                        productDetailsButton.addEventListener('click', () => {
+                            window.location.href = `${product.name}.html`; // Redirect to productname.html page
+                        });
+                        buttonsDiv.appendChild(productDetailsButton);
+
+                        const buyNowButton = document.createElement('button');
+                        buyNowButton.textContent = 'Buy Now';
+                        buyNowButton.addEventListener('click', () => {
+                            window.location.href = `b${product.name}.html`; // Redirect to productname.html page
+                        });
+                        buttonsDiv.appendChild(buyNowButton);
+
+                        productDetails.appendChild(buttonsDiv);
+                    })
+                    .catch(error => {
+                        console.error('Error fetching product descriptions:', error);
+                        const productDescription = document.createElement('p');
+                        productDescription.textContent = 'Description not available';
+                        productDetails.appendChild(productDescription);
+                    });
+
+                productDiv.appendChild(productDetails);
+                productContainer.appendChild(productDiv);
+            });
+        })
+        .catch(error => {
+            console.error('Error fetching products:', error);
+            alert('Failed to fetch products. Please try again.');
+        });
+});
+</script>
+</body>
+</html>

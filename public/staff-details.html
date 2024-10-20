@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Staff Details - Sri Seetha Rama Paddy Rice Mill</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap');
+
+        body {
+            margin: 0;
+            font-family: 'Playfair Display', serif;
+            background-color: #4e2c0a; /* Dark brown background color */
+            color: #080808;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            background: url('https://wallpapercave.com/wp/wp3592411.jpg') no-repeat center center/cover;
+            position: relative;
+        }
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5); /* Dark overlay for blur effect */
+        }
+        header {
+            /* background-color: #8b4513; Dark brown header background */
+            text-align: center;
+            color: #fff;
+            width: 100%;
+            padding: 1em 0;
+            margin-bottom: 1em;
+            position: relative;
+            z-index: 1; /* Ensure header is above the background overlay */
+        }
+        .container {
+            background-color: #fff;
+            padding: 2em;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 90%;
+            max-width: 800px;
+            margin-top: 1em;
+            z-index: 1; /* Ensure content is above the background overlay */
+        }
+        h1{
+            color: #f3efed; /* Brownish text color */
+            text-align: center;
+        }
+         h2 {
+            color: #0e0d0d; /* Brownish text color */
+            text-align: center;
+        }
+        p {
+            text-align: center;
+            margin-top: 1em;
+            font-size: 1.2em;
+        }
+        footer {
+            background: #8b4513; /* Dark brown footer background */
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+        nav {
+            background: rgba(0, 0, 0, 0.7);
+            padding: 10px;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 2; /* Ensure navigation bar is above background overlay */
+        }
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 1.2em;
+            transition: color 0.3s;
+        }
+        nav a:hover {
+            color: #fdf5e6; /* Lighter color on hover */
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <!-- <a href="Index.html">Home</a> -->
+        <a href="admin-dashboard.html">Admin Dashboard</a>
+        <a href="inbox.html">Inbox</a>
+        <a href="order-details.html">Order Details</a>
+        <a href="staff-details.html">Staff Details</a>
+    </nav>
+    <header>
+        <h1>Staff Details</h1>
+    </header>
+    <div class="container">
+        <div class="staff-item">
+            <h2>Rajesh</h2>
+            <p>Position: Manager</p>
+            <p>Rajesh oversees daily operations and ensures smooth functioning of the rice mill.</p>
+        </div>
+        <div class="staff-item">
+            <h2>Ramesh</h2>
+            <p>Position: Quality Control Specialist</p>
+            <p>Ramesh is responsible for maintaining high standards of rice quality.</p>
+        </div>
+        <div class="staff-item">
+            <h2>Uma Maheshwar</h2>
+            <p>Position: Production Supervisor</p>
+            <p>Uma Maheshwar supervises the production processes to meet production targets efficiently.</p>
+        </div>
+    </div>
+    <footer>
+        &copy; 2024 Sri Seetha Rama Paddy Rice Mill. All Rights Reserved.
+    </footer>
+</body>
+</html>

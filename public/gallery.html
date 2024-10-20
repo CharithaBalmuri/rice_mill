@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gallery - Sri Seetha Rama</title>
+    <style>
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://wallpapercave.com/wp/wp3592411.jpg') no-repeat center center/cover;
+            filter: blur(10px);
+            z-index: -1;
+        }
+        body{
+            color: white;
+            font-size: 20px;
+        }
+        nav {
+            background: rgba(0, 0, 0, 0.7);
+            padding: 10px;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 2;
+        }
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 1.2em;
+            transition: color 0.3s;
+        }
+        nav a:hover {
+            color: #fdf5e6;
+        }
+        header {
+            text-align: center;
+            padding: 1em;
+            background-color: #8b4513;
+            color: #f5f3f0;
+        }
+        .container {
+            width: 90%;
+            margin: auto;
+            overflow: hidden;
+            padding: 2em 0;
+        }
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        .gallery-item {
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .gallery-item img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        .heading {
+            text-align: center;
+            margin-bottom: 1em;
+        }
+        footer {
+            text-align: center;
+            padding: 1em;
+            background-color: #8b4513;
+            color: #f5f3f0;
+            margin-top: 2em;
+        }
+        .video-container {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%; /* 16:9 aspect ratio */
+            margin-bottom: 2em;
+        }
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+        h2{
+            font-family: 'Times New Roman', Times, serif;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="home.html">Home</a>
+        <a href="products.html">Products</a>
+        <a href="process.html">Process</a>
+        <a href="quality.html">Quality Check</a>
+        <a href="gallery.html">Gallery</a>
+        <a href="contactdetails.html">Contact</a>
+        <a href="mycart.html">Cart</a>
+    </nav>
+    <header>
+        <h1>Gallery</h1>
+    </header>
+    <div class="container">
+        <div class="video-container">
+            <iframe width="300" height="100" src="https://www.youtube.com/embed/3zau86bd0UY" frameborder="0" allowfullscreen></iframe>
+        </div>
+        <div class="heading">
+            <h2>Our Infrastructure</h2>
+        </div>
+        <div class="gallery">
+            <div class="gallery-item">
+                <img src="https://lh5.googleusercontent.com/proxy/eR2JfS4CVsOnlxSTLJmATh2LEGXlULyzGvlFC4NQswYaHQRtQ_dkU9p9x9AOvdTcEvRSXvbGvXG3bSUetZSDh1c7Ikqvi2Imkf4oGQkbCuztMyGtzOR5N8VvR_eQ2DBuzDw02w" alt="Infrastructure Image 1">
+            </div>
+            <div class="gallery-item">
+                <img src="https://lh3.googleusercontent.com/proxy/r1GBx_NNQyNxD6wfNjDc7FZUrCOY_A7oAc-saOEYFpjtfJQ7PMK5qw5L8QWPg68uGtFWwydvCjzLJ_dJQJGw2gTpG_wXgiVQjo7RPYOJkoyK9u37lLAWr4djnHopemJygrb0zQ" alt="Infrastructure Image 2">
+            </div>
+            <div class="gallery-item">
+                <img src="https://lh5.googleusercontent.com/proxy/2FH_1ABn0aPGNfOJ6nNJfIjMFKaBdmiRzshY5lVADlQSuQ_7avBo5taa0DOUrcjK1PCGxCEL8dGzDboUJBsazPemrkAz8lEsN4zritluOceknd7lut40GlPNYi8zjI4TDHUyuQ" alt="Infrastructure Image 3">
+            </div>
+            <div class="gallery-item">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSGZwKW3b_NedLVeNU2esRHTfCZQVXHYKLy6A&s" alt="Infrastructure Image 4">
+            </div>
+        </div>
+    </div>
+    <footer>
+        <p>&copy; 2024 Sri Seetha Rama. All rights reserved.</p>
+    </footer>
+</body>
+</html>

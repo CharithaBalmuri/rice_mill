@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+  <html lang="en">
+  <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Buy Now - Wild Rice</title>
+      <style>
+          body::before {
+              content: "";
+              position: fixed;
+              top: 0;
+              left: 0;
+              width: 100%;
+              height: 100%;
+              background: url('https://wallpapercave.com/wp/wp3592411.jpg') no-repeat center center/cover;
+              filter: blur(10px);
+              z-index: -1;
+          }
+          body {
+              color: black;
+              font-size: 20px;
+          }
+          header {
+              text-align: center;
+              padding: 1em;
+              background-color: #8b4513;
+              color: #f5f3f0;
+          }
+          .container {
+              width: 90%;
+              margin: auto;
+              overflow: hidden;
+              padding: 2em 0;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+          }
+          .product-image {
+              margin-right: 2em;
+          }
+          .product-image img {
+              width: 100%;
+              max-width: 300px;
+              border-radius: 10px;
+              box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+              border: none;
+              border-style: solid;
+          }
+          .product-details {
+              background-color: #fff8f0;
+              padding: 2em;
+              border-radius: 10px;
+              box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+          }
+          .product-details h2 {
+              color: #a0522d;
+              margin-bottom: 1em;
+          }
+          .product-details label, .product-details p {
+              margin: 1em 0;
+              display: block;
+          }
+          .product-details select {
+              padding: 10px;
+              font-size: 16px;
+          }
+          .total-cost {
+              font-size: 24px;
+              font-weight: bold;
+              color: #a0522d;
+          }
+          footer {
+              text-align: center;
+              padding: 1em;
+              background-color: #8b4513;
+              color: #f5f3f0;
+              margin-top: 2em;
+          }
+          .b {
+              padding-left: 15px;
+              padding-top: 7px;
+              padding-bottom: 7px;
+              padding-right: 15px;
+              display: inline-block;
+              margin-right: 10px;
+              background-color: #8b4513;
+              color: #f5f3f0;
+              border: none;
+              cursor: pointer;
+              border-radius: 5px;
+              font-size: 16px;
+          }
+          .modal {
+              display: none;
+              position: fixed;
+              z-index: 100;
+              left: 0;
+              top: 0;
+              width: 100%;
+              height: 100%;
+              overflow: auto;
+              background-color: rgba(0, 0, 0, 0.5);
+              justify-content: center;
+              align-items: center;
+          }
+          .modal-content {
+              background-color: #fefefe;
+              padding: 20px;
+              border-radius: 10px;
+              width: 80%;
+              max-width: 500px;
+              box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+              position: relative;
+          }
+          .modal-content label {
+              margin: 1em 0 0.5em;
+              display: block;
+          }
+          .modal-content input, .modal-content select {
+              width: 100%;
+              padding: 10px;
+              margin-bottom: 1em;
+          }
+          .close {
+              color: #aaa;
+              float: right;
+              font-size: 28px;
+              font-weight: bold;
+          }
+          .close:hover, .close:focus {
+              color: black;
+              text-decoration: none;
+              cursor: pointer;
+          }
+          .order-button {
+              margin-bottom: 1em;
+          }
+          .product-summary {
+              margin-top: 1em;
+              padding: 1em;
+              border: 1px solid #ddd;
+              border-radius: 10px;
+              background-color: #f9f9f9;
+          }
+      </style>
+  </head>
+  <body>
+      <header>
+          <h1>Buy Now</h1>
+      </header>
+      <div class="container">
+        <div class="product-image">
+            <img id="product-image" src="" alt="Product Image">
+        </div>
+        <div class="product-details">
+            <h2 id="product-name"></h2>
+            <label>
+                <input type="radio" name="purchaseType" value="sample" onclick="updateCost()"> Test Sample
+            </label>
+            <label>
+                <input type="radio" name="purchaseType" value="bulk" onclick="toggleQuantityOptions()"> Buy in Bulk
+            </label>
+            <div id="sample-quantity" style="display: none;">
+                <label for="sampleQuantity">Sample Quantity:</label>
+                <p>1/2 kg</p>
+            </div>
+            <div id="bulk-quantity" style="display: none;">
+                <label for="bulkQuantity">Quantity:</label>
+                <select id="bulkQuantity" onchange="updateCost()">
+                    <option value="1">1 bag</option>
+                    <option value="2">2 bags</option>
+                    <option value="3">3 bags</option>
+                    <option value="4">4 bags</option>
+                    <option value="5">5 bags</option>
+                </select>
+            </div>
+            <p>Total Cost: <span class="total-cost" id="total-cost">₹0.00</span></p>
+            <button onclick="addToCart()" class="b">ADD TO CART</button>
+            <button onclick="window.location.href='products.html'" class="b">Back</button>
+        </div>
+    </div>
+    <footer>
+        <p>&copy; 2024 Sri Seetha Rama Paddy Rice Mill. All rights reserved.</p>
+    </footer>
+    <div id="orderModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <h2>Select Order Option</h2>
+            <div class="product-summary">
+                <p><strong>Product:</strong> <span id="modal-product"></span></p>
+                <p><strong>Quantity:</strong> <span id="modal-quantity"></span></p>
+                <p><strong>Total Cost:</strong> <span id="modal-total-cost"></span></p>
+            </div>
+            <button class="b order-button" onclick="toggleOrderOptions('pickup')">Pick Up</button>
+            <button class="b order-button" onclick="toggleOrderOptions('delivery')">Delivery</button>
+            <div id="pickup-options" style="display: none;">
+                <button class="b" onclick="processOrder('pickup', 'cash')">Payment Mode</button>
+            </div>
+            <div id="delivery-options" style="display: none;">
+                <label for="customerName">Name:</label>
+                <input type="text" id="customerName">
+                <label for="deliveryAddress">Address:</label>
+                <input type="text" id="deliveryAddress">
+                <button class="b" onclick="processOrder('delivery', 'cash')">Payment Mode</button>
+            </div>
+        </div>
+    </div>
+    <script>
+        let bulkPricePerBag = 0.00; // Initialize to 0
+        const productName = 'Sona Masoori Rice'; // Example product name, change this dynamically as needed
+
+        function toggleQuantityOptions() {
+            const purchaseType = document.querySelector('input[name="purchaseType"]:checked').value;
+            document.getElementById('sample-quantity').style.display = purchaseType === 'sample' ? 'block' : 'none';
+            document.getElementById('bulk-quantity').style.display = purchaseType === 'bulk' ? 'block' : 'none';
+            if (purchaseType === 'bulk') {
+                fetchProductPrice(productName); // Fetch price from server
+            } else {
+                updateCost();
+            }
+        }
+
+        function updateCost() {
+            let totalCost = 0;
+            const purchaseType = document.querySelector('input[name="purchaseType"]:checked');
+            if (purchaseType) {
+                if (purchaseType.value === 'sample') {
+                    totalCost = 200.00;
+                } else if (purchaseType.value === 'bulk') {
+                    const bulkQuantity = document.getElementById('bulkQuantity').value;
+                    totalCost = bulkQuantity * bulkPricePerBag;
+                }
+            }
+            document.getElementById('total-cost').textContent = `₹${totalCost.toFixed(2)}`;
+        }
+
+        function fetchProductPrice(productName) {
+            fetch(`/product-price/${productName}`)
+                .then(response => response.json())
+                .then(data => {
+                    bulkPricePerBag = data.price; // Update the bulk price per bag
+                    updateCost(); // Update the total cost with the new price
+                })
+                .catch(error => {
+                    console.error('Error fetching product price:', error);
+                });
+        }
+
+        function addToCart() {
+            const purchaseType = document.querySelector('input[name="purchaseType"]:checked');
+            if (purchaseType) {
+                let quantity, price;
+                if (purchaseType.value === 'sample') {
+                    quantity = `1/2 kg`;
+                    price = 200.00;
+                } else if (purchaseType.value === 'bulk') {
+                    const bulkQuantity = document.getElementById('bulkQuantity').value;
+                    quantity = `${bulkQuantity} bags`;
+                    price = bulkQuantity * bulkPricePerBag;
+                }
+                const cartItem = {
+                    name: productName,
+                    quantity: quantity,
+                    price: price,
+                    image: 'https://tiimg.tistatic.com/fp/1/007/763/farm-fresh-100-pure-a-grade-medium-grain-sona-masoori-rice--028.jpg'
+                };
+                let cart = JSON.parse(localStorage.getItem('cart')) || [];
+                cart.push(cartItem);
+                localStorage.setItem('cart', JSON.stringify(cart));
+                alert('Item added to cart!');
+                window.location.href = 'mycart.html'; // Redirect to mycart.html after adding to cart
+            } else {
+                alert('Please select a purchase type and quantity.');
+            }
+        }
+
+        function toggleOrderOptions(option) {
+            document.getElementById('pickup-options').style.display = option === 'pickup' ? 'block' : 'none';
+            document.getElementById('delivery-options').style.display = option === 'delivery' ? 'block' : 'none';
+        }
+
+        function processOrder(type, paymentMode) {
+            const purchaseType = document.querySelector('input[name="purchaseType"]:checked').value;
+            let quantity, price;
+            if (purchaseType === 'sample') {
+                quantity = `1/2 kg`;
+                price = 200.00;
+            } else if (purchaseType === 'bulk') {
+                const bulkQuantity = document.getElementById('bulkQuantity').value;
+                quantity = `${bulkQuantity} bags`;
+                price = bulkQuantity * bulkPricePerBag;
+            }
+
+            const order = {
+                product: productName,
+                quantity: quantity,
+                price: price,
+                type: type,
+                paymentMode: paymentMode
+            };
+
+            if (type === 'delivery') {
+                order.customerName = document.getElementById('customerName').value;
+                order.deliveryAddress = document.getElementById('deliveryAddress').value;
+            }
+
+            console.log('Order processed:', order);
+            closeModal();
+            alert('Order processed successfully!');
+        }
+
+        function openModal() {
+            const purchaseType = document.querySelector('input[name="purchaseType"]:checked').value;
+            let quantity, price;
+            if (purchaseType === 'sample') {
+                quantity = `1/2 kg`;
+                price = 200.00;
+            } else if (purchaseType === 'bulk') {
+                const bulkQuantity = document.getElementById('bulkQuantity').value;
+                quantity = `${bulkQuantity} bags`;
+                price = bulkQuantity * bulkPricePerBag;
+            }
+            document.getElementById('modal-product').textContent = productName;
+            document.getElementById('modal-quantity').textContent = quantity;
+            document.getElementById('modal-total-cost').textContent = `₹${price.toFixed(2)}`;
+            document.getElementById('orderModal').style.display = 'block';
+        }
+
+        function closeModal() {
+            document.getElementById('orderModal').style.display = 'none';
+        }
+
+        window.onclick = function(event) {
+            const modal = document.getElementById('orderModal');
+            if (event.target === modal) {
+                modal.style.display = 'none';
+            }
+        }
+
+        // Set the initial product image and name
+        document.getElementById('product-image').src = 'https://tiimg.tistatic.com/fp/1/007/763/farm-fresh-100-pure-a-grade-medium-grain-sona-masoori-rice--028.jpg';
+        document.getElementById('product-name').textContent = productName;
+
+        // Fetch initial price for bulk purchase
+        fetchProductPrice(productName);
+    </script>
+</body>
+</html>

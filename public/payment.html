@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment - Wild Rice</title>
+    <style>
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://wallpapercave.com/wp/wp3592411.jpg') no-repeat center center/cover;
+            filter: blur(10px);
+            z-index: -1;
+        }
+        body {
+            color: black;
+            font-size: 20px;
+        }
+        header {
+            text-align: center;
+            padding: 1em;
+            background-color: #8b4513;
+            color: #f5f3f0;
+        }
+        .container {
+            width: 90%;
+            margin: auto;
+            overflow: hidden;
+            padding: 2em 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        .payment-details {
+            background-color: #fff8f0;
+            padding: 2em;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 500px;
+        }
+        .payment-details h2 {
+            color: #a0522d;
+            margin-bottom: 1em;
+            text-align: center;
+        }
+        .payment-details label, .payment-details p {
+            margin: 1em 0;
+            display: block;
+        }
+        .payment-details select, .payment-details input {
+            padding: 10px;
+            font-size: 16px;
+            width: 100%;
+            margin-bottom: 1em;
+        }
+        .payment-method {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1em;
+            cursor: pointer;
+        }
+        .payment-method img {
+            width: 40px;
+            height: auto;
+            margin-right: 10px;
+        }
+        .payment-inputs {
+            display: none;
+            margin-top: 1em;
+        }
+        footer {
+            text-align: center;
+            padding: 1em;
+            background-color: #8b4513;
+            color: #f5f3f0;
+            margin-top: 2em;
+        }
+        .b {
+            padding-left: 15px;
+            padding-top: 7px;
+            padding-bottom: 7px;
+            padding-right: 15px;
+            display: block;
+            margin: auto;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Payment</h1>
+    </header>
+    <div class="container">
+        <div class="payment-details">
+            <h2>Complete Your Payment</h2>
+            <!-- <label for="amount">Amount to Pay:</label> -->
+            <div class="payment-container">
+                <!-- <h1>Payment</h1> -->
+                <p>Total Amount: <span id="totalAmount"></span></p>
+                <!-- <button onclick="makePayment()">Pay Now</button> -->
+            </div>
+            <!-- <input type="text" id="amount" readonly> -->
+            
+            <div class="payment-method" onclick="showPaymentInputs('PhonePe')">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRv7C7cl9ufztQRxoH-y_biXvwoAf5bynbtnA&s" alt="PhonePe">
+                <label for="phonepe">PhonePe</label>
+            </div>
+            
+            <div class="payment-method" onclick="showPaymentInputs('Google Pay')">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR-gCS2hj5_Yn3m5KNYp09JXfHcuTWjrstpCg&s" alt="Google Pay">
+                <label for="gpay">Google Pay</label>
+            </div>
+            
+            <div class="payment-method" onclick="showPaymentInputs('Credit Card')">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSmr8gGhkhDZclmgYSQAx60tpiwknveqhguuw&s" alt="Credit Card">
+                <label for="credit-card">Credit Card</label>
+            </div>
+            
+            <div class="payment-method" onclick="showPaymentInputs('Debit Card')">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSkjtjaIHd9foLr2gWnSntdbixfc8ToAjxXkA&s" alt="Debit Card">
+                <label for="debit-card">Debit Card</label>
+            </div>
+
+            <div class="payment-method" onclick="processPayment('Cash on Delivery')">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRv7C7cl9ufztQRxoH-y_biXvwoAf5bynbtnA&s" alt="Cash on Delivery">
+                <label for="cod">Cash on Delivery</label>
+            </div>
+            
+            <div id="payment-inputs" class="payment-inputs"></div>
+
+            <button onclick="window.location.href='products.html'" class="b">Back</button>
+        </div>
+    </div>
+    <footer>
+        <p>&copy; 2024 Sri Seetha Rama Paddy Rice Mill. All rights reserved.</p>
+    </footer>
+
+    <script>
+        function showPaymentInputs(method) {
+            const paymentInputs = document.getElementById('payment-inputs');
+            paymentInputs.innerHTML = '';
+
+            switch(method) {
+                case 'PhonePe':
+                    paymentInputs.innerHTML = `
+                        <label for="phonepe-upi">Enter your PhonePe UPI ID:</label>
+                        <input type="text" id="phonepe-upi">
+                        <button onclick="submitPayment('PhonePe')">Submit</button>
+                    `;
+                    break;
+                case 'Google Pay':
+                    paymentInputs.innerHTML = `
+                        <label for="gpay-upi">Enter your Google Pay UPI ID:</label>
+                        <input type="text" id="gpay-upi">
+                        <button onclick="submitPayment('Google Pay')">Submit</button>
+                    `;
+                    break;
+                case 'Credit Card':
+                    paymentInputs.innerHTML = `
+                        <label for="cc-name">Name on your Credit Card:</label>
+                        <input type="text" id="cc-name">
+                        <label for="cc-number">Credit Card Number:</label>
+                        <input type="text" id="cc-number">
+                        <label for="cc-expiry">Expiry Date (MM/YYYY):</label>
+                        <input type="text" id="cc-expiry">
+                        <label for="cc-cvv">CVV:</label>
+                        <input type="text" id="cc-cvv">
+                        <button onclick="submitPayment('Credit Card')">Submit</button>
+                    `;
+                    break;
+                case 'Debit Card':
+                    paymentInputs.innerHTML = `
+                        <label for="dc-name">Name on your Debit Card:</label>
+                        <input type="text" id="dc-name">
+                        <label for="dc-number">Debit Card Number:</label>
+                        <input type="text" id="dc-number">
+                        <label for="dc-expiry">Expiry Date (MM/YYYY):</label>
+                        <input type="text" id="dc-expiry">
+                        <label for="dc-cvv">CVV:</label>
+                        <input type="text" id="dc-cvv">
+                        <button onclick="submitPayment('Debit Card')">Submit</button>
+                    `;
+                    break;
+                default:
+                    paymentInputs.innerHTML = '';
+            }
+
+            paymentInputs.style.display = 'block';
+        }
+
+        function submitPayment(method) {
+            let details = '';
+            switch(method) {
+                case 'PhonePe':
+                    details = document.getElementById('phonepe-upi').value;
+                    alert(`Redirecting to ${method} payment page with UPI ID: ${details}`);
+                    window.location.href = 'https://www.phonepe.com/';
+                    break;
+                case 'Google Pay':
+                    details = document.getElementById('gpay-upi').value;
+                    alert(`Redirecting to ${method} payment page with UPI ID: ${details}`);
+                    window.location.href = 'https://pay.google.com/';
+                    break;
+                case 'Credit Card':
+                    const ccName = document.getElementById('cc-name').value;
+                    const ccNumber = document.getElementById('cc-number').value;
+                    const ccExpiry = document.getElementById('cc-expiry').value;
+                    const ccCVV = document.getElementById('cc-cvv').value;
+                    alert(`Redirecting to ${method} payment page with Credit Card details: \nName: ${ccName}, Number: ${ccNumber}, Expiry: ${ccExpiry}, CVV: ${ccCVV}`);
+                    window.location.href = 'https://www.visa.com/';
+                    break;
+                case 'Debit Card':
+                    const dcName = document.getElementById('dc-name').value;
+                    const dcNumber = document.getElementById('dc-number').value;
+                    const dcExpiry = document.getElementById('dc-expiry').value;
+                    const dcCVV = document.getElementById('dc-cvv').value;
+                    alert(`Redirecting to ${method} payment page with Debit Card details: \nName: ${dcName}, Number: ${dcNumber}, Expiry: ${dcExpiry}, CVV: ${dcCVV}`);
+                    window.location.href = 'https://www.mastercard.com/';
+                    break;
+                default:
+                    alert('Invalid payment method');
+            }
+        }
+
+        // Function to get URL parameters
+        function getQueryParam(param) {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get(param);
+        }
+
+        // Set the amount based on the URL parameter
+        document.getElementById('amount').value = `₹${getQueryParam('totalCost')}`;
+        function getQueryParam(param) {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get(param);
+        }
+
+        function loadTotalAmount() {
+            const totalCost = getQueryParam('totalCost');
+            if (totalCost) {
+                document.getElementById('totalAmount').textContent = totalCost;
+            } else {
+                alert('Total cost is not available. Please return to the checkout and try again.');
+            }
+        }
+
+        function makePayment() {
+            alert('Payment process initiated.');
+        }
+
+        window.onload = loadTotalAmount;
+    </script>
+</body>
+</html>
+
+
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment</title>
+    <style>
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://wallpapercave.com/wp/wp3592411.jpg') no-repeat center center/cover;
+            filter: blur(10px);
+            z-index: -1;
+        }
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .payment-container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        .payment-container h1 {
+            margin-bottom: 20px;
+        }
+        .payment-container p {
+            font-size: 18px;
+            margin-bottom: 20px;
+        }
+        .payment-container button {
+            background-color: #6c3f11;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        .payment-container button:hover {
+            background-color: #5a3410;
+        }
+    </style>
+</head>
+<body>
+    <div class="payment-container">
+        <h1>Payment</h1>
+        <p>Total Amount: <span id="totalAmount"></span></p>
+        <button onclick="makePayment()">Pay Now</button>
+    </div>
+
+    <script>
+        function getQueryParam(param) {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get(param);
+        }
+
+        function loadTotalAmount() {
+            const totalCost = getQueryParam('totalCost');
+            if (totalCost) {
+                document.getElementById('totalAmount').textContent = totalCost;
+            } else {
+                alert('Total cost is not available. Please return to the checkout and try again.');
+            }
+        }
+
+        function makePayment() {
+            alert('Payment process initiated.');
+        }
+
+        window.onload = loadTotalAmount;
+    </script>
+</body>
+</html> -->

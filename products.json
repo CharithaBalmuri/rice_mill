@@ -1,0 +1,36 @@
+[
+    {
+        "name": "Sona Masoori Rice",
+        "description": "Medium grain raw rice sourced from local villages of Andhra Pradesh. Aged up to 6 months before packaging with a rich and unique aroma."
+    },
+    {
+        "name": "HMT Rice",
+        "description": "This is a high-quality, medium-grain rice variety that is popular in Telangana. It is known for its taste and texture, making it suitable for a variety of dishes."
+       
+    },
+    {
+        "name": "Brown Rice",
+        "description": "Whole grain rice, rich in magnesium, phosphorus, and antioxidants. Ideal for a healthy diet."
+        
+    },
+    {
+        "name": "Basmati Rice",
+        "description": "Long grain aromatic rice traditionally from the Indian subcontinent. Known for its distinct fragrance and flavor."
+       
+    },
+    {
+        "name": "Idly Rice",
+        "description": "A variety specifically used for making idlis, a popular South Indian dish. This rice has a high starch content, which helps in fermenting the idli batter effectively."
+        
+    },
+    {
+        "name": "Nellore Rice",
+        "description": "Originating from the Nellore district, this rice variety is known for its fine grains and superior taste. It's often used for special occasions and traditional dishes."
+        
+    },
+    {
+        "name": "Black Rice",
+        "description": "This is a less common but highly nutritious variety of rice that is grown in smaller quantities. It is rich in antioxidants and has a unique flavor."
+        
+    }
+]

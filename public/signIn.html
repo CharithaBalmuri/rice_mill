@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign In - Sri Seetha Rama Paddy Rice Mill</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap');
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://wallpapercave.com/wp/wp3592411.jpg') no-repeat center center/cover;
+            filter: blur(10px); /* Apply blur effect to the background image */
+            z-index: -1; /* Ensure the background stays behind all other content */
+        }
+        body {
+            font-family: 'Playfair Display', serif;
+            color: black;
+            font-size: 20px;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 2em;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            max-width: 400px;
+            width: 100%;
+        }
+        h2 {
+            color: #a0522d;
+            margin-bottom: 1em;
+        }
+        button {
+            background-color: #ffa500;
+            color: #fff;
+            padding: 10px 20px;
+            font-size: 1em;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+            margin-top: 10px;
+            width: calc(100% - 20px);
+        }
+        button:hover {
+            background-color: #e69500;
+        }
+        input[type="email"],
+        input[type="password"] {
+            width: calc(100% - 20px);
+            padding: 10px;
+            margin-bottom: 1em;
+            border: none;
+            border-radius: 5px;
+            font-size: 1em;
+        }
+        .back-button {
+            background-color: #ffa500;
+            margin-top: 10px;
+        }
+        .back-button:hover {
+            background-color: #e69500;
+        }
+        .link {
+            margin-top: 10px;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+
+
+<body>
+    <div class="container">
+        <h2>Customer Login</h2>
+        <form id="loginForm">
+            <label for="customer-email">Email:</label>
+            <input type="email" id="customer-email" name="email" required>
+            <label for="customer-password">Password:</label>
+            <input type="password" id="customer-password" name="password" required>
+            <button type="submit">Login</button>
+        </form>
+        <button class="back-button" onclick="goBack()">Back</button>
+        <div class="link">
+            <a href="forgotpassword.html">Forgot Password?</a><br>
+            <span>Don't have an account? <a href="register.html">Register</a></span>
+        </div>
+    </div>
+    <script>
+        
+
+        document.getElementById('loginForm').addEventListener('submit', async function(event) {
+        event.preventDefault();
+        const email = document.getElementById('customer-email').value;
+        const password = document.getElementById('customer-password').value;
+
+        const response = await fetch('/login', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ email, password })
+        });
+
+    const result = await response.json();
+    if (result.success) {
+        alert('Customer login successful');
+        window.location.href = `home.html?username=${result.username}`;
+    } else {
+        alert('Invalid email or password');
+    }
+});
+
+
+        function goBack() {
+            window.location.href = "index.html";
+        }
+    </script>
+</body>
+</html>

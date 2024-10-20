@@ -1,0 +1,102 @@
+<html>
+    <head>
+        <title>LOGIN PAGE</title>
+        <style>
+            *{
+                margin: 0;
+                padding:0;
+                box-sizing:border-box;
+            }
+            body,html{
+                height:100%;
+                font-family:Arial,sans-serif;
+                background-color:#f0f0f0;
+            }
+            .container{
+                display:flex;
+                flex-direction: column;
+                height: 100vh;
+            }
+            header, footer {
+                
+                background-color: #333;
+                color: white;
+                text-align: center;
+                padding: 10px 0;
+            }
+
+            main {
+                flex: 1;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+            .login-form {
+                background-color: white;
+                padding: 20px;
+                border-radius: 8px;
+                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+                width: 300px;
+    text-align: center;
+}
+
+.login-form label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.login-form input {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.login-form button {
+    width: 100%;
+    padding: 10px;
+    background-color: #5cb85c;
+    border: none;
+    border-radius: 4px;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.login-form button:hover {
+    background-color: #4cae4c;
+}
+
+        </style>
+    </head>
+    <body>
+         <h4 class="reg">Registration</h4>
+        <div class="container">
+            <header>
+                <h1>Welcome!</h1>
+            </header>
+            <main>
+                <form class="login-form">
+                    <h2>Register</h2>
+                    <div>
+                        Username:<input type="text" class="t" required>
+                    </div>
+                    <div>
+                        email:<input type="email" class="e" required>
+                    </div>
+                    <div>
+                        password:<input type="password" class="p" required>
+                    </div>
+                    <div>
+                        confirm password:<input type="password" class="cp">
+                    </div>
+                </form> 
+            </main>
+            <footer>
+                <p>&copy; qwertyuio</p>
+            </footer>
+        </div>
+    </body>
+</html>
+

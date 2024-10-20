@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sri Seetha Rama Paddy Rice Mill</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap');
+
+        body {
+            margin: 0;
+            font-family: 'Playfair Display', serif;
+            background-color: #4e2c0a; /* Dark brown background color matching the image */
+            color: #fff;
+        }
+        header {
+            background: url('https://wallpapercave.com/wp/wp3592411.jpg') no-repeat center center/cover;
+            height: 100vh;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            position: relative;
+            padding-right: 20px; /* Added padding for the rice mill name */
+        }
+        header::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+        }
+        header h1, header p, .explore-button, .mill-name { /* Added .mill-name class */
+            position: relative;
+            z-index: 2;
+        }
+        .mill-name { /* Added .mill-name class */
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 1.5em;
+            color: #fff;
+        }
+        .logo {
+            width: 100px; /* Adjusted size */
+            height: auto;
+            padding-left: 650px;
+            background-color: transparent;
+        }
+        nav {
+            background: rgba(0, 0, 0, 0.7);
+            padding: 10px;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 2;
+        }
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 1.2em;
+            transition: color 0.3s;
+        }
+        nav a:hover {
+            color: #fdf5e6;
+        }
+        header h1 {
+            margin: 0;
+            font-size: 4em;
+        }
+        header p {
+            font-size: 1.5em;
+        }
+        .explore-button {
+            background-color: #ffa500;
+            color: #fff;
+            padding: 10px 20px; /* Adjusted padding for a smaller rectangle */
+            font-size: 1em; /* Slightly smaller font size */
+            border: none;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: background-color 0.3s;
+            width: 150px; /* Fixed width for the button */
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .explore-button:hover {
+            background-color: #e69500;
+        }
+        .logout-button {
+            background-color:#ffa500;
+            padding: 10px 20px;
+            font-size: 1em;
+            border: none;
+            cursor: pointer;
+            position: absolute;
+            color: #fff;
+            top: 60px; /* Adjusted position to be below the mill name */
+            right: 20px;
+            transition: background-color 0.3s;
+            z-index: 3; /* Ensuring it stays on top */
+        }
+        .logout-button:hover {
+            background-color: #e69500;
+        }
+        footer {
+            background: #8b4513; /* Updated footer color */
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="#home">Home</a>
+        <a href="products.html">Products</a> <!-- Updated link to products.html -->
+        <a href="process.html">Process</a> <!-- Updated link to process.html -->
+        <a href="quality.html">Quality Check</a> <!-- Updated link to quality.html -->
+        <a href="gallery.html">Gallery</a> <!-- Updated link to gallery.html -->
+        <a href="contactdetails.html">Contact</a> <!-- Updated link to contactdetails.html -->
+        <a href="mycart.html">Cart</a>
+    </nav>
+    <header>
+        <img src="http://teresafamilycharity.org/wp-content/uploads/2018/05/cropped-rice-logo-transparent-bg-fixed.png" alt="Sri Seetha Rama Paddy Rice Mill Logo" class="logo"> <!-- Updated logo image with transparent background -->
+        <h1>Welcome to Sri Seetha Rama Paddy Rice Mill</h1>
+        <p>Trusted by Most</p>
+        <button class="explore-button" onclick="navigateToExplore()">Explore</button>
+        <div class="mill-name">Sri Seetha Rama Paddy Rice Mill</div> <!-- Added mill name -->
+        <button class="logout-button" onclick="logout()">Logout</button>
+    </header>
+    <footer>
+        &copy; 2024 Sri Seetha Rama Paddy Rice Mill. All Rights Reserved.
+    </footer>
+
+    <script>
+        function navigateToExplore() {
+            window.location.href = "explore.html";
+        }
+
+        function logout() {
+            // Replace the current history state with the signin.html
+            history.replaceState(null, '', 'signin.html');
+            // Redirect to signin.html
+            window.location.href = "signin.html";
+        }
+    </script>
+</body>
+</html>

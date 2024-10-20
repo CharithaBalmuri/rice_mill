@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - Srilalitha</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f5f3f0;
+            color: #4b3621;
+            margin: 0;
+            padding: 0;
+        }
+        nav {
+            background: rgba(0, 0, 0, 0.7);
+            padding: 10px;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 2;
+        }
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 1.2em;
+            transition: color 0.3s;
+        }
+        nav a:hover {
+            color: #fdf5e6;
+        }
+        header {
+            text-align: center;
+            padding: 3em;
+            background-color: #8b4513;
+            color: #f5f3f0;
+        }
+        .container {
+            width: 90%;
+            margin: auto;
+            overflow: hidden;
+            padding: 2em 0;
+            display: flex;
+            justify-content: space-between;
+        }
+        .contact-info, .contact-form {
+            width: 48%;
+            background-color: #fff8f0;
+            padding: 2em;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .contact-info p, .contact-info ul {
+            text-align: center;
+            line-height: 1.6;
+        }
+        .contact-info ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        .contact-form form {
+            display: flex;
+            flex-direction: column;
+        }
+        .contact-form label {
+            margin-top: 10px;
+        }
+        .contact-form input, .contact-form textarea {
+            padding: 10px;
+            margin-top: 5px;
+            border-radius: 5px;
+            border: 1px solid #a67c52;
+            font-size: 1em;
+        }
+        .contact-form button {
+            background-color: #a0522d;
+            color: #f5f3f0;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 5px;
+            margin-top: 20px;
+            transition: background-color 0.3s;
+        }
+        .contact-form button:hover {
+            background-color: #8b4513;
+        }
+        footer {
+            text-align: center;
+            padding: 1em;
+            background-color: #8b4513;
+            color: #f5f3f0;
+            margin-top: 2em;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="home.html">Home</a>
+        <a href="products.html">Products</a> <!-- Updated link to products.html -->
+        <a href="process.html">Process</a> <!-- Updated link to process.html -->
+        <a href="quality.html">Quality Check</a> <!-- Updated link to quality.html -->
+        <a href="gallery.html">Gallery</a> <!-- Updated link to gallery.html -->
+        <a href="contactdetails.html">Contact</a> <!-- Updated link to contactdetails.html -->
+        <a href="mycart.html">Cart</a>
+    </nav>
+    <header>
+        <h1>Contact Us</h1>
+    </header>
+    <div class="container">
+        <div class="contact-info">
+            <p>To get access to the best producers of non-basmati rice and Whole Wheat Atta in A.P get in touch with us today</p>
+            <p>If you have questions or comments, please get a hold of us in whichever way is most convenient. Ask away. There is no reasonable question that our team cannot answer.</p>
+            <ul>
+                <li>Sri Seetha Rama Paddy Rice & General Merchants, Hyderabad, Telangana – 500090</li>
+                <li>Phone: 0884 2326661</li>
+                <li>Fax No: 0884 2326679</li>
+                <li>E-Mail: sriseetharama@gmail.com</li>
+                <li>adish@sriseetharama.com</li>
+            </ul>
+        </div>
+        <div class="contact-form">
+            <form id="contactForm" action="submit_contact_form.php" method="post">
+                <label for="name">Name *</label>
+                <input type="text" id="name" name="name" required>
+
+                <label for="email">Email *</label>
+                <input type="email" id="email" name="email" required>
+
+                <label for="subject">Subject *</label>
+                <input type="text" id="subject" name="subject" required>
+
+                <label for="message">Your Message *</label>
+                <textarea id="message" name="message" rows="5" required></textarea>
+
+                <button type="submit">Send Message</button>
+            </form>
+        </div>
+    </div>
+    <footer>
+        <p>&copy; 2024 Sri Seetha Rama Paddy Rice Mill. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Function to handle form submission
+        document.getElementById("contactForm").addEventListener("submit", function(event) {
+            event.preventDefault(); // Prevent form from submitting
+
+            // Display alert
+            alert("Message sent successfully");
+
+            // Reset form fields
+            document.getElementById("contactForm").reset();
+        });
+    </script>
+</body>
+</html>

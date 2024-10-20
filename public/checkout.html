@@ -1,0 +1,233 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout</title>
+    <style>
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://wallpapercave.com/wp/wp3592411.jpg') no-repeat center center/cover;
+            filter: blur(10px);
+            z-index: -1;
+        }
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .checkout-container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        .checkout-container h1 {
+            margin-bottom: 20px;
+        }
+        .checkout-container button {
+            background-color: #6c3f11;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 5px;
+            margin: 10px;
+        }
+        .checkout-container button:hover {
+            background-color: #5a3410;
+        }
+        .address-container {
+            display: none;
+            margin-bottom: 20px;
+        }
+        .address-container input {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+    </style>
+</head>
+<body>
+    <div class="checkout-container">
+        <h1>Choose Pickup or Delivery</h1>
+        <button onclick="showPaymentMode()">Pickup</button>
+        <button onclick="showAddressForm()">Delivery</button>
+        <div class="address-container" id="address-container">
+            <input type="text" id="city" placeholder="City">
+            <input type="text" id="area" placeholder="Area">
+            <input type="text" id="houseNo" placeholder="House No.">
+            <input type="text" id="state" placeholder="State">
+        </div>
+        <button id="payment-mode-btn" onclick="proceedToPayment()" style="display:none;">Payment Mode</button>
+    </div>
+
+    <script>
+        function showPaymentMode() {
+            document.getElementById('payment-mode-btn').style.display = 'block';
+            document.getElementById('address-container').style.display = 'none';
+        }
+
+        function showAddressForm() {
+            document.getElementById('address-container').style.display = 'block';
+            document.getElementById('payment-mode-btn').style.display = 'block';
+        }
+
+        function proceedToPayment() {
+            if (document.getElementById('address-container').style.display === 'block') {
+                const city = document.getElementById('city').value;
+                const area = document.getElementById('area').value;
+                const houseNo = document.getElementById('houseNo').value;
+                const state = document.getElementById('state').value;
+
+                if (!city || !area || !houseNo || !state) {
+                    alert('Please fill in all address details');
+                    return;
+                }
+            }
+
+            window.location.href = 'payment.html';
+        }
+    </script>
+</body>
+</html>
+
+ -->
+
+
+
+ <!DOCTYPE html>
+ <html lang="en">
+ <head>
+     <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <title>Checkout</title>
+     <style>
+         body::before {
+             content: "";
+             position: fixed;
+             top: 0;
+             left: 0;
+             width: 100%;
+             height: 100%;
+             background: url('https://wallpapercave.com/wp/wp3592411.jpg') no-repeat center center/cover;
+             filter: blur(10px);
+             z-index: -1;
+         }
+         body {
+             display: flex;
+             justify-content: center;
+             align-items: center;
+             height: 100vh;
+             margin: 0;
+         }
+         .checkout-container {
+             background-color: white;
+             padding: 20px;
+             border-radius: 8px;
+             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+             text-align: center;
+             width: 300px;
+         }
+         .checkout-container h1 {
+             margin-bottom: 20px;
+         }
+         .checkout-container button {
+             background-color: #6c3f11;
+             color: white;
+             border: none;
+             padding: 10px 20px;
+             cursor: pointer;
+             border-radius: 5px;
+             margin: 10px;
+         }
+         .checkout-container button:hover {
+             background-color: #5a3410;
+         }
+         .address-container, .payment-container {
+             display: none;
+             margin-bottom: 20px;
+         }
+         .selected-items {
+             text-align: left;
+             margin-bottom: 20px;
+         }
+     </style>
+ </head>
+ <body>
+     <div class="checkout-container">
+         <h1>Checkout</h1>
+         <div class="selected-items" id="selectedItems">
+             <!-- Items will be listed here -->
+         </div>
+         <button onclick="showPickup()">Pick Up</button>
+         <button onclick="showDelivery()">Delivery</button>
+         
+         <div class="payment-container" id="paymentContainer">
+             <button onclick="proceedToPayment()">Payment Mode</button>
+         </div>
+         
+         <div class="address-container" id="addressContainer">
+             <h2>Enter Your Address</h2>
+             <form id="addressForm">
+                 <input type="text" id="city" placeholder="City" required><br><br>
+                 <input type="text" id="area" placeholder="Area" required><br><br>
+                 <input type="text" id="state" placeholder="State" required><br><br>
+                 <button type="submit">Proceed to Payment</button>
+             </form>
+         </div>
+     </div>
+ 
+     <script>
+         function showPickup() {
+             document.getElementById('addressContainer').style.display = 'none';
+             document.getElementById('paymentContainer').style.display = 'block';
+         }
+ 
+         function showDelivery() {
+             document.getElementById('addressContainer').style.display = 'block';
+             document.getElementById('paymentContainer').style.display = 'none';
+         }
+ 
+         function proceedToPayment() {
+             const totalCost = localStorage.getItem('totalCost');
+             if (!totalCost) {
+                 alert('Total cost is not available. Please return to the cart and try again.');
+                 return;
+             }
+             window.location.href = `payment.html?totalCost=${encodeURIComponent(totalCost)}`;
+         }
+ 
+         document.getElementById('addressForm').addEventListener('submit', function(event) {
+             event.preventDefault();
+             proceedToPayment();
+         });
+ 
+         // Function to load selected items
+         function loadSelectedItems() {
+             const items = JSON.parse(localStorage.getItem('selectedItems')) || [];
+             const selectedItemsDiv = document.getElementById('selectedItems');
+             items.forEach(item => {
+                 const itemDiv = document.createElement('div');
+                 itemDiv.textContent = item.name + " - $" + item.price;
+                 selectedItemsDiv.appendChild(itemDiv);
+             });
+         }
+ 
+         // Load selected items on page load
+         window.onload = loadSelectedItems;
+     </script>
+ </body>
+ </html>
+ 

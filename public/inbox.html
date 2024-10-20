@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inbox - Sri Seetha Rama Paddy Rice Mill</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap');
+
+        body {
+            margin: 0;
+            font-family: 'Playfair Display', serif;
+            background-color: #4e2c0a; /* Dark brown background color */
+            color: #0a0909;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            background: url('https://wallpapercave.com/wp/wp3592411.jpg') no-repeat center center/cover;
+            position: relative;
+        }
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5); /* Dark overlay for blur effect */
+        }
+        header {
+            /* background-color: #8b4513; */
+            text-align: center;
+            color: #fff;
+            width: 100%;
+            padding: 1em 0;
+            margin-bottom: 1em;
+            position: relative;
+            z-index: 1; /* Ensure header is above the background overlay */
+        }
+        .container {
+            background-color: white;
+            padding: 2em;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 90%;
+            max-width: 800px;
+            margin-top: 1em;
+            z-index: 1; /* Ensure content is above the background overlay */
+        } 
+        h2 {
+            color: #0d0d0c; /* Brownish text color */
+            text-align: center;
+        }
+        h1 {
+            color: #ebe5e2; /* Brownish text color */
+            text-align: center;
+        }
+        p {
+            text-align: center;
+            margin-top: 1em;
+            font-size: 1.2em;
+        }
+        footer {
+            background: #8b4513; /* Dark brown footer background */
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+        nav {
+            background: rgba(0, 0, 0, 0.7);
+            padding: 10px;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 2; /* Ensure navigation bar is above background overlay */
+        }
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 1.2em;
+            transition: color 0.3s;
+        }
+        nav a:hover {
+            color: white; /* Lighter color on hover */
+        }
+        .inbox-container {
+            background-color: #f0ebeb;
+            padding: 2em;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 90%;
+            max-width: 800px;
+            margin-top: 1em;
+            z-index: 1; 
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <!-- <a href="Index.html">Home</a> -->
+        <a href="admin-dashboard.html">Admin Dashboard</a>
+        <a href="inbox.html">Inbox</a>
+        <a href="order-details.html">Order Details</a>
+        <a href="staff-details.html">Staff Details</a>
+    </nav>
+    <header>
+        <h1>Inbox</h1>
+    </header>
+    <div class="inbox-container">
+        <div class="message-item">
+            <h3>Regarding Order Inquiry</h3>
+            <p>From: customer@example.com</p>
+            <p>Date: June 15, 2024</p>
+            <p>Message: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris vel magna et risus convallis porta.</p>
+        </div>
+        <div class="message-item">
+            <h3>Question about Product Availability</h3>
+            <p>From: supplier@example.com</p>
+            <p>Date: June 14, 2024</p>
+            <p>Message: Integer cursus lacinia libero, ac tincidunt velit mollis sed. Nulla feugiat, lorem a cursus lacinia.</p>
+        </div>
+        <div class="message-item">
+            <h3>Feedback on Recent Delivery</h3>
+            <p>From: deliveryservice@example.com</p>
+            <p>Date: June 13, 2024</p>
+            <p>Message: Proin tristique ultricies felis, a auctor lorem lacinia in. Sed interdum nunc non augue commodo.</p>
+        </div>
+        <!-- <div class="message-item">
+            <h3>Feedback on Recent Delivery</h3>
+            <p>From: deliveryservice@example.com</p>
+            <p>Date: June 13, 2024</p>
+            <p>Message: Proin tristique ultricies felis, a auctor lorem lacinia in. Sed interdum nunc non augue commodo.</p>
+        </div> -->
+    </div>
+    <footer>
+        &copy; 2024 Sri Seetha Rama Paddy Rice Mill. All Rights Reserved.
+    </footer>
+</body>
+</html>

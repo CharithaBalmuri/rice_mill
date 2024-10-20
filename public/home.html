@@ -1,0 +1,402 @@
+<!-- 
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sri Seetha Rama Paddy Rice Mill</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap');
+
+        body {
+            margin: 0;
+            font-family: 'Playfair Display', serif;
+            background-color: #4e2c0a; /* Dark brown background color matching the image */
+            color: #fff;
+        }
+        header {
+            background: url('https://wallpapercave.com/wp/wp3592411.jpg') no-repeat center center/cover;
+            height: 100vh;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            position: relative;
+            padding-right: 20px; /* Added padding for the rice mill name */
+        }
+        header::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+        }
+        header h1, header p, .explore-button, .mill-name { /* Added .mill-name class */
+            position: relative;
+            z-index: 2;
+        }
+        .mill-name { /* Added .mill-name class */
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 1.5em;
+            color: #fff;
+        }
+        .logo {
+            width: 100px; /* Adjusted size */
+            height: auto;
+            padding-left: 650px;
+            background-color: transparent;
+        }
+        nav {
+            background: rgba(0, 0, 0, 0.7);
+            padding: 10px;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 2;
+        }
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 1.2em;
+            transition: color 0.3s;
+        }
+        nav a:hover {
+            color: #fdf5e6;
+        }
+        header h1 {
+            margin: 0;
+            font-size: 4em;
+        }
+        header p {
+            font-size: 1.5em;
+        }
+        .explore-button {
+            background-color: #ffa500;
+            color: #fff;
+            padding: 10px 20px; /* Adjusted padding for a smaller rectangle */
+            font-size: 1em; /* Slightly smaller font size */
+            border: none;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: background-color 0.3s;
+            width: 150px; /* Fixed width for the button */
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .explore-button:hover {
+            background-color: #e69500;
+        }
+        .profile-dropdown {
+            position: absolute;
+            top: 60px; /* Adjust as needed */
+            right: 20px;
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 5px;
+            padding: 10px;
+            display: none; /* Initially hide the dropdown */
+            z-index: 3;
+        }
+        .profile-dropdown a {
+            display: block;
+            color: #333;
+            text-decoration: none;
+            padding: 8px 12px;
+            transition: background-color 0.3s;
+        }
+        .profile-dropdown a:hover {
+            background-color: #e0e0e0;
+        }
+        .logout-link {
+            color: #f44336; /* Red color for logout */
+        }
+        footer {
+            background: #8b4513; /* Updated footer color */
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="#home">Home</a>
+        <a href="products.html">Products</a>
+        <a href="process.html">Process</a>
+        <a href="quality.html">Quality Check</a>
+        <a href="gallery.html">Gallery</a>
+        <a href="contactdetails.html">Contact</a>
+        <a href="mycart.html">Cart</a>
+        <a href="#" id="profileLink">My Profile</a>
+        <div class="profile-dropdown" id="profileDropdown">
+            <a href="#" id="welcomeUser">Welcome, User</a>
+            <a href="#" class="logout-link" onclick="logout()">Logout</a>
+        </div>
+    </nav>
+    <header>
+        <img src="http://teresafamilycharity.org/wp-content/uploads/2018/05/cropped-rice-logo-transparent-bg-fixed.png" alt="Sri Seetha Rama Paddy Rice Mill Logo" class="logo">
+        <h1>Welcome to Sri Seetha Rama Paddy Rice Mill</h1>
+        <p>Trusted by Most</p>
+        <button class="explore-button" onclick="navigateToExplore()">Explore</button>
+    </header>
+    <footer>
+        &copy; 2024 Sri Seetha Rama Paddy Rice Mill. All Rights Reserved.
+    </footer>
+
+    <script>
+        function navigateToExplore() {
+            window.location.href = "explore.html";
+        }
+
+        function logout() {
+            // Clear local storage and redirect to signIn.html
+            localStorage.removeItem('user');
+            history.replaceState(null, '', 'signIn.html');
+            window.location.href = "signIn.html";
+        }
+
+        // Toggle profile dropdown visibility
+        const profileDropdown = document.getElementById('profileDropdown');
+        const profileLink = document.getElementById('profileLink');
+        const welcomeUser = document.getElementById('welcomeUser');
+        
+        document.addEventListener('click', function(event) {
+            const target = event.target;
+            if (target === profileLink) {
+                profileDropdown.style.display = profileDropdown.style.display === 'block' ? 'none' : 'block';
+            } else if (!profileDropdown.contains(target)) {
+                profileDropdown.style.display = 'none';
+            }
+        });
+
+        // Retrieve the user information from local storage and display the username
+        const user = JSON.parse(localStorage.getItem('user'));
+        if (user) {
+            welcomeUser.textContent = `Welcome, ${user.username}`;
+        }
+    </script>
+</body>
+</html> -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sri Seetha Rama Paddy Rice Mill</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap');
+
+        body {
+            margin: 0;
+            font-family: 'Playfair Display', serif;
+            background-color: #4e2c0a; /* Dark brown background color matching the image */
+            color: #fff;
+        }
+        header {
+            background: url('https://wallpapercave.com/wp/wp3592411.jpg') no-repeat center center/cover;
+            height: 100vh;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            position: relative;
+            padding-right: 20px; /* Added padding for the rice mill name */
+        }
+        header::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+        }
+        header h1, header p, .explore-button, .mill-name { /* Added .mill-name class */
+            position: relative;
+            z-index: 2;
+        }
+        .mill-name { /* Added .mill-name class */
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 1.5em;
+            color: #fff;
+        }
+        .logo {
+            width: 100px; /* Adjusted size */
+            height: auto;
+            padding-left: 650px;
+            background-color: transparent;
+        }
+        nav {
+            background: rgba(0, 0, 0, 0.7);
+            padding: 10px;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 2;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 1.2em;
+            transition: color 0.3s;
+        }
+        nav a:hover {
+            color: #fdf5e6;
+        }
+        header h1 {
+            margin: 0;
+            font-size: 4em;
+        }
+        header p {
+            font-size: 1.5em;
+        }
+        .explore-button {
+            background-color: #ffa500;
+            color: #fff;
+            padding: 10px 20px; /* Adjusted padding for a smaller rectangle */
+            font-size: 1em; /* Slightly smaller font size */
+            border: none;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: background-color 0.3s;
+            width: 150px; /* Fixed width for the button */
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .explore-button:hover {
+            background-color: #e69500;
+        }
+        .profile-icon {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: transform 0.3s;
+            margin-right: 15px;
+        }
+        .profile-icon:hover {
+            transform: scale(1.1);
+        }
+        .profile-dropdown {
+            position: absolute;
+            top: 60px; /* Adjust as needed */
+            right: 20px;
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 5px;
+            padding: 10px;
+            display: none; /* Initially hide the dropdown */
+            z-index: 3;
+        }
+        .profile-dropdown a {
+            display: block;
+            color: #333;
+            text-decoration: none;
+            padding: 8px 12px;
+            transition: background-color 0.3s;
+        }
+        .profile-dropdown a:hover {
+            background-color: #e0e0e0;
+        }
+        .logout-link {
+            color: #f44336; /* Red color for logout */
+        }
+        footer {
+            background: #8b4513; /* Updated footer color */
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div>
+            <a href="#home">Home</a>
+            <a href="products.html">Products</a> 
+            <a href="process.html">Process</a> 
+            <a href="quality.html">Quality Check</a> 
+            <a href="gallery.html">Gallery</a> 
+            <a href="contactdetails.html">Contact</a> 
+            <a href="mycart.html">Cart</a>
+        </div>
+        <div>
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQWIwzvWvX8PsvQfTkIP9wSz1dktGq4m-X4fg&s" alt="Profile Icon" class="profile-icon" id="profileIcon">
+        </div>
+        <div class="profile-dropdown" id="profileDropdown">
+            <a href="#" id="welcomeUser"></a> 
+            <a href="#" class="logout-link" onclick="logout()">Logout</a>
+        </div>
+    </nav>
+    <header>
+        <img src="http://teresafamilycharity.org/wp-content/uploads/2018/05/cropped-rice-logo-transparent-bg-fixed.png" alt="Sri Seetha Rama Paddy Rice Mill Logo" class="logo"> 
+        <h1>Welcome to Sri Seetha Rama Paddy Rice Mill</h1>
+        <p>Trusted by Most</p>
+        <button class="explore-button" onclick="navigateToExplore()">Explore</button>
+
+    </header>
+    <footer>
+        &copy; 2024 Sri Seetha Rama Paddy Rice Mill. All Rights Reserved.
+    </footer>
+
+    <script>
+        function navigateToExplore() {
+            window.location.href = "explore.html";
+        }
+
+        function logout() {
+            // Replace the current history state with the signin.html
+            history.replaceState(null, '', 'signIn.html');
+            // Redirect to signin.html
+            window.location.href = "signIn.html";
+        }
+
+        // Toggle profile dropdown visibility
+        const profileDropdown = document.getElementById('profileDropdown');
+        const profileIcon = document.getElementById('profileIcon');
+        const welcomeUser = document.getElementById('welcomeUser');
+
+        document.addEventListener('click', function(event) {
+            const target = event.target;
+            if (target === profileIcon) {
+                profileDropdown.style.display = profileDropdown.style.display === 'block' ? 'none' : 'block';
+            } else if (!profileDropdown.contains(target)) {
+                profileDropdown.style.display = 'none';
+            }
+        });
+
+        // Set the welcome message with username from localStorage
+        const username = localStorage.getItem('username');
+        if (username) {
+            welcomeUser.textContent = `Welcome, ${username}`;
+        } else {
+            welcomeUser.textContent = 'Welcome';
+        }
+
+        // Store the username in localStorage after login
+        const params = new URLSearchParams(window.location.search);
+        if (params.has('username')) {
+            localStorage.setItem('username', params.get('username'));
+            welcomeUser.textContent = `Welcome, ${params.get('username')}`;
+        }
+    </script>
+</body>
+</html>
+

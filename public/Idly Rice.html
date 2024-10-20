@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Idly Rice - Product Details</title>
+    <style>
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://wallpapercave.com/wp/wp3592411.jpg') no-repeat center center/cover;
+            filter: blur(10px); /* Apply blur effect to the background image */
+            z-index: -1; /* Ensure the background stays behind all other content */
+            /* color: white; */
+        }
+        body{
+            color: black;
+            font-size: 20px;
+        }
+        header {
+            text-align: center;
+            padding: 1em;
+            background-color: #8b4513;
+            color: #f5f3f0;
+        }
+        .container {
+            width: 90%;
+            margin: auto;
+            overflow: hidden;
+            padding: 2em 0;
+        }
+        .product-image {
+            text-align: center;
+            margin-bottom: 2em;
+        }
+        .product-image img {
+            width: 20%;
+            height: 20%;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border: none;
+            border-style: solid;
+        }
+        .product-details {
+            text-align: center;
+            background-color: #fff8f0;
+            padding: 2em;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .product-details h2 {
+            color: #a0522d;
+        }
+        .product-details p, .product-details ul {
+            margin: 1em 0;
+            text-align: left;
+            line-height: 1.6;
+        }
+        .buttons {
+            text-align: center;
+            margin-top: 2em;
+        }
+        .buttons button {
+            background-color: #a0522d;
+            color: #f5f3f0;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 5px;
+            margin: 0 10px;
+            transition: background-color 0.3s;
+        }
+        .buttons button:hover {
+            background-color: #8b4513;
+        }
+        footer {
+            text-align: center;
+            padding: 1em;
+            background-color: #8b4513;
+            color: #f5f3f0;
+            margin-top: 2em;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Idly Rice</h1>
+    </header>
+    <div class="container">
+        <div class="product-image">
+            <img src="Idly Rice.png" alt="Idly Rice">
+        </div>
+        <div class="product-details">
+            <h2>About Idly Rice</h2>
+            <p>Idly Rice is a variety of rice specifically used for making idlis, a popular South Indian dish. It has a high starch content, which aids in fermenting the idli batter effectively. Idly Rice is known for its smooth texture and is a staple in South Indian cuisine.</p>
+            <p>Additional Information:</p>
+            <ul>
+                <li>Origin: South India</li>
+                <li>Texture: Smooth</li>
+                <li>Best for: Idlis, steamed cakes</li>
+            </ul>
+        </div>
+        <div class="buttons">
+            <button onclick="window.location.href='contactdetails.html'">Contact for More</button>
+            <button onclick="window.location.href='products.html'">Back to Products</button>
+        </div>
+    </div>
+    <footer>
+        <p>&copy; 2024 Sri Seetha Rama Paddy Rice Mill. All rights reserved.</p>
+    </footer>
+</body>
+</html>

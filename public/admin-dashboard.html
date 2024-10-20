@@ -1,0 +1,378 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - Sri Seetha Rama Paddy Rice Mill</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap');
+
+        body {
+            margin: 0;
+            font-family: 'Playfair Display', serif;
+            background-color: #4e2c0a; /* Dark brown background color */
+            color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            min-height: 100vh;
+            background: url('https://wallpapercave.com/wp/wp3592411.jpg') no-repeat center center/cover;
+            position: relative;
+        }
+
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5); /* Dark overlay for blur effect */
+        }
+
+        .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            width: 90%;
+            max-width: 1200px;
+            margin-top: 1em;
+            padding: 2em;
+            position: relative; /* Ensure container is positioned relative to body */
+            z-index: 1; /* Ensure container is above the overlay */
+        }
+
+        .form-container {
+            background-color: #fff;
+            padding: 2em;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 45%;
+            z-index: 2; /* Ensure form container is above the table container */
+        }
+
+        .form-container h2 {
+            color: #a0522d; /* Brownish text color */
+            text-align: center;
+            margin-bottom: 1em;
+        }
+
+        .form-container form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-container form label {
+            margin-bottom: 0.5em;
+        }
+
+        .form-container form input[type="text"] {
+            padding: 10px;
+            margin-bottom: 1em;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .form-container form button {
+            background-color: #ffa500; /* Orange button background */
+            color: #fff;
+            padding: 10px 20px;
+            font-size: 1em;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+            align-self: flex-start;
+            width: 100px;
+        }
+
+        .form-container form button:hover {
+            background-color: #e69500; /* Darker orange on hover */
+        }
+
+        .table-container {
+            background-color: #fff;
+            padding: 2em;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 50%;
+            z-index: 2; /* Ensure table container is above the overlay */
+        }
+
+        .table-container h2 {
+            color: #a0522d; /* Brownish text color */
+            text-align: center;
+            margin-bottom: 1em;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1em;
+            color: #0a0909;
+        }
+
+        table, th, td {
+            border: 1px solid #0a0909;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+
+        th.actions, td.actions {
+            text-align: center;
+        }
+
+        footer {
+            background: #8b4513; /* Dark brown footer background */
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            z-index: 1; /* Ensure footer is above the overlay */
+        }
+        nav {
+            background: rgba(0, 0, 0, 0.7);
+            padding: 10px;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 2; /* Ensure navigation bar is above background overlay */
+        }
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 1.2em;
+            transition: color 0.3s;
+        }
+        nav a:hover {
+            color: white; /* Lighter color on hover */
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="admin-dashboard.html">Admin Dashboard</a>
+        <a href="inbox.html">Inbox</a>
+        <a href="orderdetails.html">Order Details</a>
+        <a href="staffdetails.html">Staff Details</a>
+        <a href="#" onclick="logout()">Logout</a>
+    </nav>
+<div class="container">
+    <div class="form-container">
+        <h2>Add Product</h2>
+        <form id="add-product-form">
+            <label for="product-name">Product Name</label>
+            <input type="text" id="product-name" name="product-name" placeholder="Enter product name" required>
+
+            <label for="price">Price(₹ per bag)</label>
+            <input type="text" id="price" name="price" placeholder="Enter price" required>
+
+            <label for="discount">Discount (%)</label>
+            <input type="text" id="discount" name="discount" placeholder="Enter discount (rupees)" required>
+
+            <label for="stock">Stock (bags)</label>
+            <input type="text" id="stock" name="stock" placeholder="Enter stock quantity" required>
+
+            <button type="button" onclick="addProduct()">Add Product</button>
+        </form>
+    </div>
+    <div class="table-container">
+        <h2>Manage Products</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Product Name</th>
+                    <th>Price(₹ per bag)</th>
+                    <th>Discount (%)</th>
+                    <th>Stock (bags)</th>
+                    <th class="actions">Actions</th>
+                </tr>
+            </thead>
+            <tbody id="product-list">
+                
+            </tbody>
+        </table>
+    </div>
+</div>
+<footer>
+    &copy; 2024 Sri Seetha Rama Paddy Rice Mill. All Rights Reserved.
+</footer>
+
+<script>
+    async function addProduct() {
+        const productName = document.getElementById('product-name').value.trim();
+        const price = parseFloat(document.getElementById('price').value.trim());
+        const discount = parseFloat(document.getElementById('discount').value.trim());
+        const stock = parseInt(document.getElementById('stock').value.trim());
+
+        if (!productName || isNaN(price) || isNaN(discount) || isNaN(stock)) {
+            alert('Please enter valid product details.');
+            return;
+        }
+
+        try {
+            // Check if product exists in products.json
+            const response = await fetch('/products.json');
+            if (!response.ok) {
+                throw new Error('Failed to fetch product data.');
+            }
+            const products = await response.json();
+            const existingProduct = products.find(product => product.name === productName);
+
+            if (!existingProduct) {
+                alert('Product not available in the list. Please choose an existing product.');
+                return;
+            }
+
+            const newProduct = {
+                name: productName,
+                price: price,
+                discount: discount,
+                stock: stock
+            };
+
+            const addResponse = await fetch('/add-product', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(newProduct)
+            });
+
+            if (!addResponse.ok) {
+                throw new Error('Failed to add product.');
+            }
+
+            const addedProduct = await addResponse.json(); // Get the added product details
+            addToManageProductsTable(addedProduct); // Add product to "Manage Products" table
+            document.getElementById('add-product-form').reset();
+            alert('Product added successfully!');
+        } catch (error) {
+            console.error('Error adding product:', error);
+            alert('Failed to add product. Please try again.');
+        }
+    }
+
+    function addToManageProductsTable(product) {
+        const productList = document.getElementById('product-list');
+
+        const row = document.createElement('tr');
+        row.setAttribute('data-product-id', product._id);
+
+        // Product Name
+        let cell = document.createElement('td');
+        cell.textContent = product.name;
+        row.appendChild(cell);
+
+        // Price
+        cell = document.createElement('td');
+        cell.textContent = product.price.toFixed(2); // Format to 2 decimal places
+        row.appendChild(cell);
+
+        // Discount
+        cell = document.createElement('td');
+        cell.textContent = product.discount.toFixed(2); // Format to 2 decimal places
+        row.appendChild(cell);
+
+        // Stock
+        cell = document.createElement('td');
+        cell.textContent = product.stock;
+        row.appendChild(cell);
+
+        // Actions (only delete button)
+        cell = document.createElement('td');
+        const deleteButton = document.createElement('button');
+        deleteButton.textContent = 'Delete';
+        deleteButton.addEventListener('click', () => deleteProduct(product._id));
+        cell.appendChild(deleteButton);
+        row.appendChild(cell);
+
+        productList.appendChild(row);
+    }
+
+    async function fetchProducts() {
+        try {
+            const response = await fetch('/products');
+            if (!response.ok) {
+                throw new Error('Failed to fetch products.');
+            }
+            const products = await response.json();
+            displayProducts(products);
+        } catch (error) {
+            console.error('Error fetching products:', error);
+            alert('Failed to fetch products. Please try again.');
+        }
+    }
+
+    function displayProducts(products) {
+        const productList = document.getElementById('product-list');
+        productList.innerHTML = '';
+
+        products.forEach(product => {
+            const row = document.createElement('tr');
+            row.setAttribute('data-product-id', product._id);
+
+            // Product Name
+            let cell = document.createElement('td');
+            cell.textContent = product.name;
+            row.appendChild(cell);
+
+            // Price
+            cell = document.createElement('td');
+            cell.textContent = product.price.toFixed(2); // Format to 2 decimal places
+            row.appendChild(cell);
+
+            // Discount
+            cell = document.createElement('td');
+            cell.textContent = product.discount.toFixed(2); // Format to 2 decimal places
+            row.appendChild(cell);
+
+            // Stock
+            cell = document.createElement('td');
+            cell.textContent = product.stock;
+            row.appendChild(cell);
+
+            // Actions (only delete button)
+            cell = document.createElement('td');
+            const deleteButton = document.createElement('button');
+            deleteButton.textContent = 'Delete';
+            deleteButton.addEventListener('click', () => deleteProduct(product._id));
+            cell.appendChild(deleteButton);
+            row.appendChild(cell);
+
+            productList.appendChild(row);
+        });
+    }
+
+    async function deleteProduct(productId) {
+        try {
+            const response = await fetch(`/products/${productId}`, {
+                method: 'DELETE'
+            });
+
+            if (!response.ok) {
+                throw new Error('Failed to delete product.');
+            }
+
+            alert('Product deleted successfully!');
+            fetchProducts(); // Refresh product list after deleting a product
+        } catch (error) {
+            console.error('Error deleting product:', error);
+            alert('Failed to delete product. Please try again.');
+        }
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+        fetchProducts(); // Fetch products when the page loads
+    });
+</script>
+</body>
+</html> -->
+
+
